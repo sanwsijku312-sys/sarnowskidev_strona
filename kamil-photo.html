@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kamil Nowak Photography — portfolio fotografa. Portrety, krajobrazy, reportaże. Minimalistyczna galeria z pełnoekranowym podglądem.">
+    <title>Kamil Nowak Photography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-elevated: #111111;
+            --surface: #161616;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --text: #f0f0f0;
+            --text-secondary: #707070;
+            --text-muted: #404040;
+            --accent: #e0e0e0;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ═══ HEADER ═══ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text);
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--text);
+        }
+
+        /* Hamburger */
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 200;
+        }
+
+        .nav-burger span {
+            display: block;
+            width: 20px;
+            height: 1px;
+            background: var(--text);
+            transition: var(--transition);
+        }
+
+        .nav-burger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+        .nav-burger.active span:nth-child(2) { opacity: 0; }
+        .nav-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 150;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active { right: 0; }
+
+        .mobile-menu__links {
+            list-style: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .mobile-menu__links a {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .mobile-menu__links a:hover { color: var(--text-secondary); }
+
+        .mobile-menu__links .nav-back {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+        }
+
+        /* ═══ HERO ═══ */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.8) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content > * {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: fade-up 0.8s ease forwards;
+        }
+
+        .hero-content > *:nth-child(1) { animation-delay: 0.3s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.5s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.7s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes fade-up {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-line {
+            width: 40px;
+            height: 1px;
+            background: var(--text-secondary);
+            margin: 0 auto 28px;
+        }
+
+        .hero-name {
+            font-family: var(--font-body);
+            font-size: clamp(2.4rem, 5vw, 4.5rem);
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            border: 1px solid var(--border-hover);
+            padding: 14px 32px;
+            transition: var(--transition);
+        }
+
+        .hero-cta:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--text-secondary);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: float-bounce 2.5s ease-in-out infinite;
+        }
+
+        .hero-scroll span {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--text-muted), transparent);
+        }
+
+        @keyframes float-bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ═══ SECTION COMMON ═══ */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .section-line {
+            width: 40px;
+            height: 1px;
+            background: var(--text-muted);
+            margin: 20px auto 0;
+        }
+
+        /* ═══ FILTER TABS ═══ */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 56px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px 0;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition-fast);
+        }
+
+        .filter-tab:hover {
+            color: var(--text-secondary);
+        }
+
+        .filter-tab.active {
+            color: var(--text);
+            border-bottom-color: var(--text);
+        }
+
+        /* ═══ MASONRY GALLERY ═══ */
+        .gallery-grid {
+            columns: 3;
+            column-gap: 16px;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 16px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 2px;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .gallery-item.hidden {
+            position: absolute;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+            margin: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .gallery-item.hide-out {
+            opacity: 0;
+            transform: translateX(40px);
+            pointer-events: none;
+        }
+
+        .gallery-item.hide-in {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: none !important;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
+            filter: grayscale(20%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+            filter: grayscale(0%);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.7) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-info {
+            transform: translateY(8px);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-item-info {
+            transform: translateY(0);
+        }
+
+        .gallery-item-title {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .gallery-item-cat {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* ═══ ABOUT STRIP ═══ */
+        .about-strip {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(30%);
+            transition: filter 0.6s ease;
+        }
+
+        .about-image:hover {
+            filter: grayscale(0%);
+        }
+
+        .about-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .about-title {
+            font-family: var(--font-body);
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-stat-number {
+            font-family: var(--font-mono);
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--text);
+            letter-spacing: 2px;
+        }
+
+        .about-stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ═══ CONTACT STRIP ═══ */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-email {
+            font-family: var(--font-body);
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--text);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 12px;
+            transition: var(--transition-fast);
+            border-bottom: 1px solid transparent;
+        }
+
+        .contact-email:hover {
+            border-bottom-color: var(--text-secondary);
+        }
+
+        .contact-sub {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+        }
+
+        .contact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            border: 1px solid var(--border-hover);
+            padding: 14px 36px;
+            transition: var(--transition);
+        }
+
+        .contact-cta:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--text-secondary);
+        }
+
+        /* ═══ LIGHTBOX ═══ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            transform: scale(0.92);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 28px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            color: var(--text-secondary);
+        }
+
+        .lightbox-close:hover {
+            border-color: rgba(255,255,255,0.3);
+            color: #fff;
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.2s;
+        }
+
+        .lightbox.active .lightbox-info {
+            opacity: 1;
+        }
+
+        .lightbox-info-title {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .lightbox-info-cat {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            color: var(--text-secondary);
+        }
+
+        .lightbox-nav:hover {
+            border-color: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        .lightbox-prev { left: 24px; }
+        .lightbox-next { right: 24px; }
+
+        .lightbox-counter {
+            position: absolute;
+            top: 36px;
+            left: 32px;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        /* ═══ FOOTER ═══ */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-socials a {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer-socials a:hover {
+            color: var(--text);
+        }
+
+        .footer-back {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer-back:hover {
+            color: var(--text);
+        }
+
+        /* ═══ SCROLL ANIMATIONS ═══ */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-delay-1 { transition-delay: 0.1s; }
+        .animate-delay-2 { transition-delay: 0.2s; }
+        .animate-delay-3 { transition-delay: 0.3s; }
+
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 1024px) {
+            .gallery-grid { columns: 2; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-image { height: 350px; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .nav-links { display: none; }
+            .nav-burger { display: flex; }
+
+            .section { padding: 80px 0; }
+
+            .hero-name { letter-spacing: 4px; }
+
+            .gallery-grid { columns: 2; column-gap: 8px; }
+            .gallery-item { margin-bottom: 8px; }
+
+            .filter-tabs { gap: 16px; }
+
+            .about-stats { gap: 32px; flex-wrap: wrap; }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid { columns: 1; }
+            .hero-name { letter-spacing: 2px; font-size: 1.8rem; }
+            .hero-subtitle { letter-spacing: 3px; font-size: 0.65rem; }
+            .lightbox-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">Kamil Nowak <span>— Photography</span></a>
+                <ul class="nav-links">
+                    <li><a href="#galeria" class="active">Galeria</a></li>
+                    <li><a href="#o-mnie">O mnie</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                    <li><a href="index.html" style="color: var(--text-muted);">Portfolio</a></li>
+                </ul>
+                <button class="nav-burger" id="navBurger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu__links">
+            <li><a href="#galeria" class="mobile-link">Galeria</a></li>
+            <li><a href="#o-mnie" class="mobile-link">O mnie</a></li>
+            <li><a href="#kontakt" class="mobile-link">Kontakt</a></li>
+            <li><a href="index.html" class="nav-back">← Wróć do Portfolio</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-line"></div>
+            <h1 class="hero-name">Kamil Nowak</h1>
+            <p class="hero-subtitle">Fotografia portretowa · Krajobraz · Reportaż</p>
+            <a href="#galeria" class="hero-cta">
+                Zobacz prace
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </a>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section" id="galeria">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Wybrane prace</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="filter-tabs animate-on-scroll">
+                <button class="filter-tab active" data-filter="all">Wszystkie</button>
+                <button class="filter-tab" data-filter="portret">Portrety</button>
+                <button class="filter-tab" data-filter="krajobraz">Krajobrazy</button>
+                <button class="filter-tab" data-filter="architektura">Architektura</button>
+                <button class="filter-tab" data-filter="reportaz">Reportaże</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item animate-on-scroll" data-category="krajobraz" data-title="Świt nad Tatrami" data-cat-label="Krajobraz">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200&auto=format&fit=crop" alt="Świt nad Tatrami — fotografia krajobrazowa" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Świt nad Tatrami</div>
+                            <div class="gallery-item-cat">Krajobraz</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="portret" data-title="Portret w naturalnym świetle" data-cat-label="Portret">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop" alt="Portret kobiety w naturalnym świetle" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Naturalne światło</div>
+                            <div class="gallery-item-cat">Portret</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="architektura" data-title="Geometria betonu" data-cat-label="Architektura">
+                    <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=800&auto=format&fit=crop" alt="Geometria betonu — architektura minimalistyczna" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Geometria betonu</div>
+                            <div class="gallery-item-cat">Architektura</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="portret" data-title="Cień i światło" data-cat-label="Portret">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" alt="Portret — cień i światło" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Cień i światło</div>
+                            <div class="gallery-item-cat">Portret</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="krajobraz" data-title="Mgła o poranku" data-cat-label="Krajobraz">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop" alt="Mgła o poranku — fotografia krajobrazowa" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Mgła o poranku</div>
+                            <div class="gallery-item-cat">Krajobraz</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="reportaz" data-title="Festiwal uliczny" data-cat-label="Reportaż">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=800&auto=format&fit=crop" alt="Festiwal uliczny — fotoreportaż" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Festiwal uliczny</div>
+                            <div class="gallery-item-cat">Reportaż</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="architektura" data-title="Linie perspektywy" data-cat-label="Architektura">
+                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=800&auto=format&fit=crop" alt="Linie perspektywy — architektura" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Linie perspektywy</div>
+                            <div class="gallery-item-cat">Architektura</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="reportaz" data-title="Życie codzienne" data-cat-label="Reportaż">
+                    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=800&auto=format&fit=crop" alt="Życie codzienne — fotoreportaż uliczny" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Życie codzienne</div>
+                            <div class="gallery-item-cat">Reportaż</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="portret" data-title="Minimalistyczny portret" data-cat-label="Portret">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" alt="Minimalistyczny portret mężczyzny" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Minimalistyczny portret</div>
+                            <div class="gallery-item-cat">Portret</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="krajobraz" data-title="Jezioro o zmierzchu" data-cat-label="Krajobraz">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?q=80&w=1200&auto=format&fit=crop" alt="Jezioro o zmierzchu — fotografia krajobrazowa" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Jezioro o zmierzchu</div>
+                            <div class="gallery-item-cat">Krajobraz</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="architektura" data-title="Szklane odbicia" data-cat-label="Architektura">
+                    <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=800&auto=format&fit=crop" alt="Szklane odbicia — architektura nowoczesna" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Szklane odbicia</div>
+                            <div class="gallery-item-cat">Architektura</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="reportaz" data-title="Nocne miasto" data-cat-label="Reportaż">
+                    <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=800&auto=format&fit=crop" alt="Nocne miasto — fotoreportaż" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Nocne miasto</div>
+                            <div class="gallery-item-cat">Reportaż</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="krajobraz" data-title="Dolina górska" data-cat-label="Krajobraz">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop" alt="Dolina górska — fotografia krajobrazowa" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Dolina górska</div>
+                            <div class="gallery-item-cat">Krajobraz</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="architektura" data-title="Nowoczesne struktury" data-cat-label="Architektura">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop" alt="Nowoczesne struktury" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Nowoczesne struktury</div>
+                            <div class="gallery-item-cat">Architektura</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item animate-on-scroll" data-category="reportaz" data-title="Występ na żywo" data-cat-label="Reportaż">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop" alt="Występ na żywo" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">Występ na żywo</div>
+                            <div class="gallery-item-cat">Reportaż</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about-strip" id="o-mnie">
+        <div class="container">
+            <div class="about-grid">
+                <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=800&auto=format&fit=crop" alt="Kamil Nowak — fotograf" class="about-image animate-on-scroll" loading="lazy">
+                <div class="animate-on-scroll animate-delay-2">
+                    <span class="about-tag">O mnie</span>
+                    <h2 class="about-title">Każde zdjęcie opowiada historię</h2>
+                    <p class="about-text">Fotografia to dla mnie sposób na zatrzymanie chwil, które umykają. Od ponad dekady dokumentuję ludzi, miejsca i emocje — z pasją do detali i naturalnego światła.</p>
+                    <p class="about-text">Specjalizuję się w fotografii portretowej, krajobrazowej oraz reportażowej. Każda sesja to indywidualne podejście i pełne zaangażowanie w Twoją wizję.</p>
+                    <div class="about-stats">
+                        <div>
+                            <div class="about-stat-number">12+</div>
+                            <div class="about-stat-label">Lat doświadczenia</div>
+                        </div>
+                        <div>
+                            <div class="about-stat-number">500+</div>
+                            <div class="about-stat-label">Sesji zdjęciowych</div>
+                        </div>
+                        <div>
+                            <div class="about-stat-number">15</div>
+                            <div class="about-stat-label">Wystaw indywidualnych</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact-section" id="kontakt">
+        <div class="container animate-on-scroll">
+            <span class="section-tag">Kontakt</span>
+            <h2 class="section-title" style="margin-bottom: 40px;">Porozmawiajmy o Twoim projekcie</h2>
+            <a href="mailto:kamil@nowakphoto.pl" class="contact-email">kamil@nowakphoto.pl</a>
+            <p class="contact-sub">Odpowiadam w ciągu 24 godzin</p>
+            <a href="mailto:kamil@nowakphoto.pl" class="contact-cta">
+                Napisz wiadomość
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-copy">&copy; 2026 Kamil Nowak Photography — Projekt koncepcyjny</span>
+                <div class="footer-socials">
+                    <a href="#">Instagram</a>
+                    <a href="#">Behance</a>
+                    <a href="#">Dribbble</a>
+                </div>
+                <a href="index.html" class="footer-back">← Portfolio Jakuba</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-counter" id="lightboxCounter">1 / 9</span>
+        <button class="lightbox-close" id="lightboxClose">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        <div class="lightbox-info" id="lightboxInfo">
+            <div class="lightbox-info-title" id="lightboxTitle"></div>
+            <div class="lightbox-info-cat" id="lightboxCat"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === NAVIGATION ===
+            const burger = document.getElementById('navBurger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    burger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // === SCROLL ANIMATIONS ===
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+            // === FILTER TABS ===
+            const tabs = document.querySelectorAll('.filter-tab');
+            const items = document.querySelectorAll('.gallery-item');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    if (tab.classList.contains('active')) return; // Ignore if already active
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const filter = tab.dataset.filter;
+
+                    // 1. Fade out non-matching items (slide right)
+                    items.forEach(item => {
+                        const shouldShow = filter === 'all' || item.dataset.category === filter;
+                        if (!shouldShow && !item.classList.contains('hidden')) {
+                            item.classList.add('hide-out');
+                        }
+                    });
+
+                    // 2. Wait for fade out, then hide them and show new ones (slide in from left)
+                    setTimeout(() => {
+                        items.forEach(item => {
+                            const shouldShow = filter === 'all' || item.dataset.category === filter;
+                            
+                            if (shouldShow) {
+                                if (item.classList.contains('hidden')) {
+                                    item.classList.remove('hidden', 'hide-out');
+                                    item.classList.add('hide-in'); // Start on the left
+                                    
+                                    void item.offsetWidth; // Force reflow
+                                    
+                                    item.classList.remove('hide-in'); // Transition to normal
+                                    item.classList.add('visible');
+                                } else {
+                                    item.classList.remove('hide-out');
+                                }
+                            } else {
+                                item.classList.add('hidden');
+                                item.classList.remove('hide-out', 'visible');
+                            }
+                        });
+                    }, 350); // Matches CSS transition duration roughly
+                });
+            });
+
+            // === LIGHTBOX ===
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            const lightboxCat = document.getElementById('lightboxCat');
+            const lightboxCounter = document.getElementById('lightboxCounter');
+            const closeBtn = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+
+            let currentIndex = 0;
+            let visibleItems = [];
+
+            function getVisibleItems() {
+                return Array.from(items).filter(item => !item.classList.contains('hidden'));
+            }
+
+            function openLightbox(index) {
+                visibleItems = getVisibleItems();
+                currentIndex = index;
+                updateLightbox();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function updateLightbox() {
+                const item = visibleItems[currentIndex];
+                const img = item.querySelector('img');
+                lightboxImg.src = img.src.replace('w=800', 'w=1600').replace('w=1200', 'w=1920');
+                lightboxImg.alt = img.alt;
+                lightboxTitle.textContent = item.dataset.title;
+                lightboxCat.textContent = item.dataset.catLabel;
+                lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % visibleItems.length;
+                updateLightbox();
+            }
+
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+                updateLightbox();
+            }
+
+            items.forEach((item, i) => {
+                item.addEventListener('click', () => {
+                    const vis = getVisibleItems();
+                    const idx = vis.indexOf(item);
+                    openLightbox(idx >= 0 ? idx : 0);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+            nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+            prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            });
+        });
+    </script>
+</body>
+</html>

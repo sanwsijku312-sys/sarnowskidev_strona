@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Profesjonalne tworzenie stron internetowych, obsługa IT i wsparcie techniczne. Nowoczesne rozwiązania webowe dla Twojego biznesu.">
+    <meta name="keywords"
+        content="strony internetowe, web developer, IT, pomoc informatyczna, portfolio, tworzenie stron">
+    <meta name="author" content="Jakub">
+    <title>sarnowski.dev | Web Developer & IT Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated background -->
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav__container">
+            <a href="#hero" class="nav__logo">
+                <span class="nav__logo-bracket">&lt;</span>sarnowski.dev<span class="nav__logo-bracket"> /&gt;</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="#uslugi" class="nav__link">Usługi</a></li>
+                <li><a href="#projekty" class="nav__link">Projekty</a></li>
+                <li><a href="#o-mnie" class="nav__link">O mnie</a></li>
+                <li><a href="#proces" class="nav__link">Proces</a></li>
+                <li><a href="#kontakt" class="nav__link nav__link--cta">Kontakt</a></li>
+            </ul>
+            <button class="nav__burger" id="navBurger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu__links">
+            <li><a href="#uslugi" class="mobile-menu__link">Usługi</a></li>
+            <li><a href="#projekty" class="mobile-menu__link">Projekty</a></li>
+            <li><a href="#o-mnie" class="mobile-menu__link">O mnie</a></li>
+            <li><a href="#proces" class="mobile-menu__link">Proces</a></li>
+            <li><a href="#kontakt" class="mobile-menu__link">Kontakt</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <div class="hero__badge" data-animate="fade-up">
+                        <span class="hero__badge-dot"></span>
+                        Dostępny do współpracy
+                    </div>
+                    <div class="hero__profile" data-animate="fade-up" data-delay="50">
+                        <img src="photo_of_me.webp" alt="Jakub — Web Developer" class="hero__profile-img">
+                        <span class="hero__profile-name" id="profileTyping"></span>
+                    </div>
+                    <h1 class="hero__title" data-animate="fade-up" data-delay="100">
+                        Tworzę <span class="hero__title-gradient">nowoczesne</span><br>
+                        strony internetowe
+                    </h1>
+                    <p class="hero__subtitle" data-animate="fade-up" data-delay="200">
+                        Projektuję i buduję szybkie, nowoczesne strony www oraz systemy online, które automatycznie zdobywają klientów dla Twojego biznesu. Bez korporacyjnych narzutów, bezpośrednio i skutecznie.
+                    </p>
+                    <div class="hero__actions" data-animate="fade-up" data-delay="300">
+                        <a href="#kontakt" class="btn btn--primary">
+                            <span>Rozpocznij projekt</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                        <a href="#uslugi" class="btn btn--ghost">
+                            Zobacz usługi
+                        </a>
+                    </div>
+                    <div class="hero__stats" data-animate="fade-up" data-delay="400">
+                        <div class="hero__stat">
+                            <span class="hero__stat-number" data-count="100">0</span><span
+                                class="hero__stat-plus">%</span>
+                            <span class="hero__stat-label">Responsywność (Mobile)</span>
+                        </div>
+                        <div class="hero__stat-divider"></div>
+                        <div class="hero__stat">
+                            <span class="hero__stat-number" data-count="95">0</span><span
+                                class="hero__stat-plus">%+</span>
+                            <span class="hero__stat-label">Wynik Google PageSpeed</span>
+                        </div>
+                        <div class="hero__stat-divider"></div>
+                        <div class="hero__stat">
+                            <span class="hero__stat-number" data-count="24">0</span><span
+                                class="hero__stat-plus">h</span>
+                            <span class="hero__stat-label">Czas reakcji na zgłoszenie</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__visual" data-animate="fade-left" data-delay="200">
+                    <div class="hero__code-window">
+                        <div class="code-window__header">
+                            <div class="code-window__dots">
+                                <span class="code-window__dot code-window__dot--red"></span>
+                                <span class="code-window__dot code-window__dot--yellow"></span>
+                                <span class="code-window__dot code-window__dot--green"></span>
+                            </div>
+                            <span class="code-window__title">ai-workflow.js</span>
+                        </div>
+                        <div class="code-window__body">
+                            <pre><code><span class="code--keyword">const</span> <span class="code--variable">projekt</span> = {
+  <span class="code--property">klient</span>: <span class="code--string">"Lokalny Biznes"</span>,
+  <span class="code--property">podejście</span>: <span class="code--string">"AI-Driven"</span>,
+  <span class="code--property">stack</span>: [
+    <span class="code--string">"WordPress"</span>, <span class="code--string">"HTML/CSS/JS"</span>,
+  ],
+  <span class="code--property">automatyzacja</span>: {
+    <span class="code--property">copywriting</span>: <span class="code--boolean">true</span>,
+    <span class="code--property">seo</span>: <span class="code--boolean">true</span>,
+    <span class="code--property">optymalizacja</span>: <span class="code--boolean">true</span>
+  },
+  <span class="code--property">czas_realizacji</span>: <span class="code--string">"ekspresowy"</span>,
+};
+
+<span class="code--keyword">await</span> <span class="code--function">dostarczStrony</span>(projekt);
+<span class="code--comment">// ✓ Gotowe do wdrożenia</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infinite Text Marquee -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee__inner">
+                <span>SZYBKIE WDROŻENIA • AUTOMATYZACJA BIZNESU • SYSTEMY REZERWACJI ONLINE • OPTYMALIZACJA GOOGLE SPEED • RESPONSYWNY DESIGN • SZYBKIE WDROŻENIA • AUTOMATYZACJA BIZNESU • SYSTEMY REZERWACJI ONLINE • OPTYMALIZACJA GOOGLE SPEED • RESPONSYWNY DESIGN •&nbsp;</span>
+                <span>SZYBKIE WDROŻENIA • AUTOMATYZACJA BIZNESU • SYSTEMY REZERWACJI ONLINE • OPTYMALIZACJA GOOGLE SPEED • RESPONSYWNY DESIGN • SZYBKIE WDROŻENIA • AUTOMATYZACJA BIZNESU • SYSTEMY REZERWACJI ONLINE • OPTYMALIZACJA GOOGLE SPEED • RESPONSYWNY DESIGN •&nbsp;</span>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <section class="services" id="uslugi">
+            <div class="container">
+                <div class="section-header" data-animate="fade-up">
+                    <span class="section-header__tag">Usługi</span>
+                    <h2 class="section-header__title">Co mogę dla Ciebie <span class="text-gradient">zrobić</span></h2>
+                    <p class="section-header__desc">Kompleksowe rozwiązania webowe i IT dopasowane do Twoich potrzeb</p>
+                </div>
+                <div class="services__grid">
+                    <!-- 1. Tworzenie stron & Wizytówek -->
+                    <div class="service-card" data-animate="fade-up" data-delay="0">
+                        <div class="service-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Tworzenie stron & Wizytówek</h3>
+                        <p class="service-card__desc">Nowoczesne, błyskawicznie ładujące się i responsywne strony internetowe. Twój biznes zyska profesjonalny wizerunek w sieci, który realnie przyciąga nowych klientów.</p>
+                        <ul class="service-card__tags">
+                            <li>Strony WWW</li>
+                            <li>Responsywność</li>
+                            <li>Szybki start</li>
+                        </ul>
+                    </div>
+                    <!-- 2. Hosting & Konfiguracja -->
+                    <div class="service-card" data-animate="fade-up" data-delay="100">
+                        <div class="service-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Hosting & Konfiguracja</h3>
+                        <p class="service-card__desc">Kompleksowe wdrożenie od A do Z. Zajmę się zakupem szybkiego serwera, rejestracją domeny oraz wdrożeniem bezpiecznego certyfikatu SSL (zielona kłódeczka).</p>
+                        <ul class="service-card__tags">
+                            <li>Domeny</li>
+                            <li>Serwery</li>
+                            <li>Certyfikat SSL</li>
+                        </ul>
+                    </div>
+                    <!-- 3. Wizytówka Google Maps (SEO) -->
+                    <div class="service-card" data-animate="fade-up" data-delay="200">
+                        <div class="service-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Wizytówka Google Maps (SEO)</h3>
+                        <p class="service-card__desc">Profesjonalne pozycjonowanie lokalne. Skonfiguruję Pana wizytówkę w mapach Google tak, aby klienci z Trzcianki, Poznania i okolic trafiali prosto do Pana.</p>
+                        <ul class="service-card__tags">
+                            <li>Google Moja Firma</li>
+                            <li>Pozycjonowanie</li>
+                            <li>Lokalny Marketing</li>
+                        </ul>
+                    </div>
+                    <!-- 4. Teksty i Copywriting -->
+                    <div class="service-card" data-animate="fade-up" data-delay="300">
+                        <div class="service-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 20h9"></path>
+                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Teksty i Copywriting</h3>
+                        <p class="service-card__desc">Nie masz czasu na pisanie? Przygotuję chwytliwe, gotowe teksty na stronę, opisy usług oraz cenniki w pełni zoptymalizowane pod kątem wyszukiwarki Google.</p>
+                        <ul class="service-card__tags">
+                            <li>Treści SEO</li>
+                            <li>Pisanie tekstów</li>
+                            <li>Korekta</li>
+                        </ul>
+                    </div>
+                    <!-- 5. Integracje i Widgety -->
+                    <div class="service-card" data-animate="fade-up" data-delay="400">
+                        <div class="service-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Integracje i Widgety</h3>
+                        <p class="service-card__desc">Wzbogać stronę o automatyczny system rezerwacji wizyt online (idealny dla salonów beauty) lub interaktywny kalkulator kosztów (stworzony dla autoserwisów).</p>
+                        <ul class="service-card__tags">
+                            <li>Czat Live</li>
+                            <li>Rezerwacje</li>
+                            <li>Mapy Google</li>
+                        </ul>
+                    </div>
+                    <!-- 6. Abonament na Święty Spokój -->
+                    <div class="service-card" data-animate="fade-up" data-delay="500">
+                        <div class="service-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Abonament na Święty Spokój</h3>
+                        <p class="service-card__desc">Comiesięczna opieka techniczna. Szybkie zmiany w cennikach, aktualizacje danych czy natychmiastowa pomoc techniczna zawsze wtedy, kiedy tego potrzebujesz.</p>
+                        <ul class="service-card__tags">
+                            <li>Opieka IT</li>
+                            <li>Aktualizacje</li>
+                            <li>Wsparcie techniczne</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projekty">
+            <div class="container">
+                <div class="section-header" data-animate="fade-up">
+                    <span class="section-header__tag">Portfolio</span>
+                    <h2 class="section-header__title">Realizacje <span class="text-gradient">koncepcyjne</span></h2>
+                    <p class="section-header__desc">Przykłady nowoczesnych rozwiązań dopasowanych do lokalnego rynku</p>
+                </div>
+                <div class="projects__grid">
+                    <!-- Project 1 -->
+                    <a href="aura-beauty.html" class="project-card" data-animate="fade-up" data-delay="0" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600&auto=format&fit=crop" alt="Aura Beauty Studio" class="project-card__img">
+                        <div class="project-card__badge">Projekt koncepcyjny</div>
+                        <h3 class="project-card__title">Strona Salonu Beauty</h3>
+                        <p class="project-card__desc">Elegancki, kobiecy design z wbudowanym systemem rezerwacji wizyt online. Zoptymalizowana pod wyszukiwania lokalne.</p>
+                        <ul class="project-card__tags">
+                            <li>Zobacz na żywo ➜</li>
+                            <li>HTML/CSS/JS</li>
+                            <li>Kobiecy Design</li>
+                        </ul>
+                    </a>
+                    <!-- Project 2 -->
+                    <a href="apex-auto.html" class="project-card" data-animate="fade-up" data-delay="100" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=600&auto=format&fit=crop" alt="Apex Auto Service" class="project-card__img">
+                        <div class="project-card__badge">Projekt koncepcyjny</div>
+                        <h3 class="project-card__title">Landing Page dla Autoserwisu</h3>
+                        <p class="project-card__desc">Nowoczesny, ciemny motyw budujący zaufanie. Zintegrowany formularz szybkiej wyceny naprawy na podstawie zdjęć.</p>
+                        <ul class="project-card__tags">
+                            <li>Zobacz na żywo ➜</li>
+                            <li>HTML/CSS/JS</li>
+                            <li>Wysoka konwersja</li>
+                        </ul>
+                    </a>
+                    <!-- Project 3 -->
+                    <a href="kamil-photo.html" class="project-card" data-animate="fade-up" data-delay="200" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop" alt="Kamil Nowak Photography" class="project-card__img">
+                        <div class="project-card__badge">Projekt koncepcyjny</div>
+                        <h3 class="project-card__title">Portfolio Fotografa</h3>
+                        <p class="project-card__desc">Minimalistyczna galeria masonry z interaktywnym Lightboxem, filtrami kategorii i lazy loadingiem zdjęć. Ultra-minimalistyczny design.</p>
+                        <ul class="project-card__tags">
+                            <li>Zobacz na żywo ➜</li>
+                            <li>Lightbox & Filtry</li>
+                            <li>Minimalizm</li>
+                        </ul>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="o-mnie">
+            <div class="container">
+                <div class="about__layout">
+                    <div class="about__content" data-animate="fade-up">
+                        <span class="section-header__tag">O mnie</span>
+
+                        <h2 class="about__title">Pasja do technologii,<br><span class="text-gradient">skupienie na zysku klienta</span></h2>
+                        <p class="about__text">
+                            Jestem niezależnym web developerem z Wielkopolski (Trzcianka / Poznań), specjalizującym się w AI-Driven Development. Łączę klasyczne rzemiosło programistyczne z najnowszymi narzędziami sztucznej inteligencji. Co to oznacza dla Ciebie? Dostarczam nowoczesne, zoptymalizowane strony w czasie i cenie, którym tradycyjne agencje nie są w stanie dorównać.
+                        </p>
+                        <p class="about__text">
+                            Pracuję bezpośrednio z Tobą — bez pośredników, handlowców i korporacyjnych kosztów. Każdy projekt traktuję indywidualnie, dbając o to, by strona nie tylko ładnie wyglądała, ale przede wszystkim generowała realne zapytania od Pana klientów.
+                        </p>
+                        <div class="about__tech">
+                            <h3 class="about__tech-title">Technologie</h3>
+                            <div class="about__tech-grid">
+                                <div class="tech-pill">AI-Driven Development</div>
+                                <div class="tech-pill">Prompt Engineering</div>
+                                <div class="tech-pill">AI Automations</div>
+                                <div class="tech-pill">WordPress</div>
+                                <div class="tech-pill">HTML5 / CSS3 / JS</div>
+                                <div class="tech-pill">Git</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__visual" data-animate="fade-left" data-delay="200">
+                        <div class="about__terminal">
+                            <div class="code-window__header">
+                                <div class="code-window__dots">
+                                    <span class="code-window__dot code-window__dot--red"></span>
+                                    <span class="code-window__dot code-window__dot--yellow"></span>
+                                    <span class="code-window__dot code-window__dot--green"></span>
+                                </div>
+                                <span class="code-window__title">terminal</span>
+                            </div>
+                            <div class="terminal__body">
+                                <div class="terminal__line" data-line="1">
+                                    <span class="terminal__prompt">~$</span>
+                                    <span class="terminal__text terminal__typing" data-text="whoami"></span>
+                                </div>
+                                <div class="terminal__line terminal__output" data-line="2">
+                                    <span class="terminal__result">Jakub — Niezależny Web Developer & Specjalista IT</span>
+                                </div>
+                                <div class="terminal__line" data-line="3">
+                                    <span class="terminal__prompt">~$</span>
+                                    <span class="terminal__text terminal__typing"
+                                        data-text="cat umiejętności.txt"></span>
+                                </div>
+                                <div class="terminal__line terminal__output" data-line="4">
+                                    <span class="terminal__result">→ Strony internetowe</span>
+                                </div>
+                                <div class="terminal__line terminal__output" data-line="5">
+                                    <span class="terminal__result">→ Obsługa IT</span>
+                                </div>
+                                <div class="terminal__line terminal__output" data-line="6">
+                                    <span class="terminal__result">→ Pomoc techniczna</span>
+                                </div>
+                                <div class="terminal__line" data-line="7">
+                                    <span class="terminal__prompt">~$</span>
+                                    <span class="terminal__text terminal__typing"
+                                        data-text="echo 'Gotowy do współpracy!'"></span>
+                                </div>
+                                <div class="terminal__line terminal__output" data-line="8">
+                                    <span class="terminal__result terminal__result--highlight">Gotowy do współpracy!
+                                        🚀</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process" id="proces">
+            <div class="container">
+                <div class="section-header" data-animate="fade-up">
+                    <span class="section-header__tag">Proces</span>
+                    <h2 class="section-header__title">Jak <span class="text-gradient">pracuję</span></h2>
+                    <p class="section-header__desc">Przejrzysty proces od pomysłu do gotowego produktu</p>
+                </div>
+                <div class="process__timeline">
+                    <div class="process__step" data-animate="fade-up" data-delay="0">
+                        <div class="process__step-number">01</div>
+                        <div class="process__step-content">
+                            <h3 class="process__step-title">Konsultacja</h3>
+                            <p class="process__step-desc">Poznaję Twoje potrzeby, cele i wizję. Razem ustalamy zakres
+                                projektu i najlepsze rozwiązania.</p>
+                        </div>
+                    </div>
+                    <div class="process__step" data-animate="fade-up" data-delay="100">
+                        <div class="process__step-number">02</div>
+                        <div class="process__step-content">
+                            <h3 class="process__step-title">Projektowanie</h3>
+                            <p class="process__step-desc">Tworzę mockupy i prototypy interfejsu. Dopracowuję każdy
+                                detal, aż będziesz w pełni zadowolony.</p>
+                        </div>
+                    </div>
+                    <div class="process__step" data-animate="fade-up" data-delay="200">
+                        <div class="process__step-number">03</div>
+                        <div class="process__step-content">
+                            <h3 class="process__step-title">Budowa</h3>
+                            <p class="process__step-desc">Koduję stronę z dbałością o wydajność, responsywność i SEO.
+                                Testuję na różnych urządzeniach.</p>
+                        </div>
+                    </div>
+                    <div class="process__step" data-animate="fade-up" data-delay="300">
+                        <div class="process__step-number">04</div>
+                        <div class="process__step-content">
+                            <h3 class="process__step-title">Wdrożenie</h3>
+                            <p class="process__step-desc">Publikuję stronę, konfiguruję domenę i zapewniam wsparcie po
+                                wdrożeniu. Jestem dostępny na bieżąco.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="kontakt">
+            <div class="container">
+                <div class="contact__layout">
+                    <div class="contact__info" data-animate="fade-up">
+                        <span class="section-header__tag">Kontakt</span>
+                        <h2 class="contact__title">Masz pomysł?<br><span class="text-gradient">Porozmawiajmy</span></h2>
+                        <p class="contact__desc">Napisz do mnie, a odpowiem w ciągu 24 godzin. Pierwsza konsultacja jest
+                            bezpłatna.</p>
+                        <div class="contact__methods">
+                            <a href="mailto:[TU WPISZ SWÓJ E-MAIL]" class="contact__method" id="contact-email">
+                                <div class="contact__method-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="contact__method-label">Email</span>
+                                    <span class="contact__method-value">[TU WPISZ SWÓJ E-MAIL]</span>
+                                </div>
+                            </a>
+                            <a href="tel:[TU WPISZ SWÓJ TELEFON]" class="contact__method" id="contact-phone">
+                                <div class="contact__method-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="contact__method-label">Telefon</span>
+                                    <span class="contact__method-value">[TU WPISZ SWÓJ TELEFON]</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <form class="contact__form" id="contactForm" data-animate="fade-left" data-delay="200">
+                        <div class="form__group">
+                            <label for="name" class="form__label">Imię i nazwisko</label>
+                            <input type="text" id="name" name="name" class="form__input" placeholder="Jan Kowalski"
+                                required>
+                        </div>
+                        <div class="form__group">
+                            <label for="email" class="form__label">Email</label>
+                            <input type="email" id="email" name="email" class="form__input" placeholder="jan@firma.pl"
+                                required>
+                        </div>
+                        <div class="form__group">
+                            <label for="service" class="form__label">Usługa</label>
+                            <select id="service" name="service" class="form__input form__select">
+                                <option value="" disabled selected>Wybierz usługę</option>
+                                <option value="strona">Tworzenie stron & Wizytówek</option>
+                                <option value="hosting">Hosting & Konfiguracja</option>
+                                <option value="google-maps">Wizytówka Google Maps (SEO)</option>
+                                <option value="copywriting">Teksty i Copywriting</option>
+                                <option value="integracje">Integracje i Widgety</option>
+                                <option value="abonament">Abonament na Święty Spokój</option>
+                                <option value="inne">Inne</option>
+                            </select>
+                        </div>
+                        <div class="form__group">
+                            <label for="message" class="form__label">Wiadomość</label>
+                            <textarea id="message" name="message" class="form__input form__textarea"
+                                placeholder="Opisz swój projekt..." rows="4" required></textarea>
+                        </div>
+                        <div class="form__group form__checkbox-group">
+                            <input type="checkbox" id="rodo" name="rodo" required>
+                            <label for="rodo">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania ofertowego zgodnie z Polityką Prywatności.</label>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full" id="submitBtn">
+                            <span>Wyślij wiadomość</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <a href="#hero" class="nav__logo">
+                        <span class="nav__logo-bracket">&lt;</span>sarnowski.dev<span class="nav__logo-bracket"> /&gt;</span>
+                    </a>
+                    <p class="footer__tagline">Nowoczesne strony internetowe<br>& rozwiązania IT</p>
+                    <p class="footer__company">Jakub Sarnowski — Kompleksowe Usługi Web Development & Wsparcie IT</p>
+                </div>
+                <div class="footer__links">
+                    <a href="#uslugi">Usługi</a>
+                    <a href="#projekty">Projekty</a>
+                    <a href="#o-mnie">O mnie</a>
+                    <a href="#proces">Proces</a>
+                    <a href="#kontakt">Kontakt</a>
+                    <a href="#polityka">Polityka Prywatności</a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 sarnowski.dev. Wszelkie prawa zastrzeżone.</p>
+                <p class="footer__made">Zaprojektowane i zakodowane z <span class="footer__heart">♥</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Preview Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="project-modal__backdrop" id="projectModalBackdrop"></div>
+        <div class="project-modal__container">
+            <div class="project-modal__toolbar">
+                <div class="project-modal__views">
+                    <button class="project-modal__view-btn active" id="viewDesktop" aria-label="Widok komputer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <span>Komputer</span>
+                    </button>
+                    <button class="project-modal__view-btn" id="viewMobile" aria-label="Widok telefon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                        <span>Telefon</span>
+                    </button>
+                </div>
+                <button class="project-modal__close" id="projectModalClose">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span>Zamknij podgląd</span>
+                </button>
+            </div>
+            <div class="project-modal__frame-wrapper" id="projectFrameWrapper">
+                <div class="project-modal__phone-container" id="projectPhoneContainer">
+                    <div class="project-modal__phone-notch"></div>
+                    <iframe class="project-modal__iframe" id="projectIframe" src="" title="Podgląd projektu"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div class="chatbot" id="chatbot">
+        <button class="chatbot__bubble" id="chatbotBubble" aria-label="Otwórz czat z asystentem">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a7 7 0 0 1 7 7c0 3.87-3.13 7-7 7a6.97 6.97 0 0 1-3.77-1.1L4 16l1.1-4.23A6.97 6.97 0 0 1 5 9a7 7 0 0 1 7-7z"></path>
+                <circle cx="9.5" cy="9" r="0.5" fill="currentColor" stroke="none"></circle>
+                <circle cx="14.5" cy="9" r="0.5" fill="currentColor" stroke="none"></circle>
+                <path d="M9.5 13a3.5 3.5 0 0 0 5 0"></path>
+            </svg>
+        </button>
+        <div class="chatbot__nudge" id="chatbotNudge">
+            Pogadaj z asystentem! 💬
+            <button class="chatbot__nudge-close" id="chatbotNudgeClose" aria-label="Zamknij">×</button>
+        </div>
+        <div class="chatbot__window" id="chatbotWindow">
+            <div class="chatbot__header">
+                <div class="chatbot__header-info">
+                    <div class="chatbot__header-avatar">
+                        <img src="photo_of_me.webp" alt="Jakub" class="chatbot__header-img">
+                        <span class="chatbot__header-status"></span>
+                    </div>
+                    <div>
+                        <span class="chatbot__header-name">Asystent Jakuba</span>
+                        <span class="chatbot__header-subtitle">Zwykle odpowiada natychmiast</span>
+                    </div>
+                </div>
+                <button class="chatbot__close" id="chatbotClose" aria-label="Zamknij czat">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="chatbot__messages" id="chatbotMessages"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apex Auto Service — profesjonalny warsztat samochodowy. Diagnostyka komputerowa, mechanika pojazdowa, serwis klimatyzacji i układy hamulcowe. Szybka wycena online.">
+    <title>Apex Auto Service | Profesjonalny Serwis Samochodowy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --bg-elevated: #0f0f12;
+            --surface-color: #16161a;
+            --surface-light: #22222a;
+            --surface-lighter: #2a2a34;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a98;
+            --text-muted: #55555f;
+            --accent-color: #ff5e00;
+            --accent-hover: #ff7c33;
+            --accent-glow: rgba(255, 94, 0, 0.35);
+            --accent-subtle: rgba(255, 94, 0, 0.08);
+            --accent-border: rgba(255, 94, 0, 0.2);
+            --border-color: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --font-main: 'Inter', sans-serif;
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s ease;
+            --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+            --shadow-glow: 0 4px 24px var(--accent-glow);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ═══ NAVIGATION ═══ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(10, 10, 12, 0.95);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links .nav-cta {
+            color: var(--text-primary);
+        }
+
+        .nav-cta-wrap {
+            margin-left: 8px;
+        }
+
+        /* Hamburger */
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 200;
+        }
+
+        .nav-burger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav-burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 12, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 150;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu__links {
+            list-style: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .mobile-menu__links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            transition: var(--transition-fast);
+        }
+
+        .mobile-menu__links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu__links .nav-back {
+            font-size: 16px;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* ═══ BUTTONS ═══ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            gap: 8px;
+            font-family: var(--font-main);
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #e64a00 100%);
+            color: #fff;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent-color) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: var(--surface-light);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-lighter);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 13px;
+            border-radius: 8px;
+        }
+
+        /* ═══ HERO SECTION ═══ */
+        .hero {
+            position: relative;
+            padding: 160px 0 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+            z-index: 0;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 10, 12, 0.97) 0%, rgba(10, 10, 12, 0.75) 50%, rgba(10, 10, 12, 0.85) 100%);
+        }
+
+        .hero-noise {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, var(--bg-color), transparent);
+            z-index: 2;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-glow--1 {
+            background: var(--accent-color);
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero-glow--2 {
+            background: #ff8c42;
+            bottom: -200px;
+            left: -200px;
+            opacity: 0.08;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 680px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--accent-subtle);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-border);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 28px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 6px transparent; }
+        }
+
+        .hero-title {
+            font-size: clamp(42px, 5.5vw, 68px);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--accent-color), #ff9e4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .hero-stat-number .accent {
+            color: var(--accent-color);
+        }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* ═══ SECTION COMMON ═══ */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--accent-subtle);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-border);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 3.5vw, 42px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        
+        .section-title span {
+            background: linear-gradient(135deg, var(--accent-color), #ff9e4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 17px;
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ═══ SERVICES / SPECIALIZATIONS ═══ */
+        .services {
+            background: var(--bg-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), #ff9e4a);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 120px;
+            height: 120px;
+            background: var(--accent-color);
+            filter: blur(80px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-border);
+            box-shadow: var(--shadow-card);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover::after {
+            opacity: 0.1;
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--accent-subtle);
+            border: 1px solid var(--accent-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        .service-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .service-card-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ═══ WHY US / TRUST SECTION ═══ */
+        .why-us {
+            background: var(--bg-elevated);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .why-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .why-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .why-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            pointer-events: none;
+        }
+
+        .why-image-badge {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .why-image-badge-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+
+        .why-image-badge-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .why-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .why-content .section-tag {
+            align-self: flex-start;
+        }
+
+        .why-content .section-title {
+            text-align: left;
+        }
+
+        .why-content .section-desc {
+            text-align: left;
+            margin: 0 0 32px 0;
+        }
+
+        .why-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .why-feature {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            transition: var(--transition);
+        }
+
+        .why-feature:hover {
+            border-color: var(--accent-border);
+            transform: translateX(4px);
+        }
+
+        .why-feature-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-subtle);
+            border: 1px solid var(--accent-border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+        }
+
+        .why-feature-text h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .why-feature-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ═══ STATS BAR ═══ */
+        .stats-bar {
+            padding: 60px 0;
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--accent-color);
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ═══ CALCULATOR ═══ */
+        .calculator-section {
+            background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-elevated) 100%);
+        }
+
+        .calculator-wrapper {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), #ff9e4a, var(--accent-color));
+        }
+
+        .calculator-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 250px;
+            height: 250px;
+            background: var(--accent-color);
+            filter: blur(130px);
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .calculator-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .calc-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .calc-header-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-subtle);
+            border: 1px solid var(--accent-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+        }
+
+        .calc-header-text h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .calc-header-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .form-select {
+            appearance: none;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: var(--font-main);
+            outline: none;
+            transition: var(--transition);
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238a8a98' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .form-select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(255, 94, 0, 0.15);
+        }
+
+        .form-select:hover {
+            border-color: var(--border-hover);
+        }
+
+        .calc-result {
+            margin-top: 32px;
+            padding: 28px;
+            background: var(--accent-subtle);
+            border: 1px solid var(--accent-border);
+            border-radius: 16px;
+            text-align: center;
+            transition: var(--transition);
+            animation: result-in 0.4s ease;
+        }
+
+        @keyframes result-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .calc-price {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-color), #ff9e4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .calc-note {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        /* ═══ CTA SECTION ═══ */
+        .cta-section {
+            padding: 120px 0;
+            background: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-inner {
+            background: linear-gradient(135deg, var(--surface-color) 0%, var(--surface-light) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 80px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-inner::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: var(--accent-color);
+            filter: blur(200px);
+            opacity: 0.08;
+        }
+
+        .cta-inner h2 {
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+            letter-spacing: -1px;
+        }
+
+        .cta-inner h2 span {
+            background: linear-gradient(135deg, var(--accent-color), #ff9e4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-inner p {
+            color: var(--text-secondary);
+            font-size: 17px;
+            max-width: 500px;
+            margin: 0 auto 36px;
+            position: relative;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ═══ MODAL ═══ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--surface-color);
+            padding: 0;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            transform: translateY(30px) scale(0.95);
+            transition: var(--transition);
+            overflow: hidden;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-body {
+            padding: 36px 32px;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-color), #ff9e4a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -52px auto 24px;
+            color: #fff;
+            box-shadow: 0 4px 20px var(--accent-glow);
+            position: relative;
+            z-index: 2;
+            border: 4px solid var(--surface-color);
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .modal-desc {
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ═══ FOOTER ═══ */
+        footer {
+            padding: 80px 0 0;
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 320px;
+        }
+
+        .footer-col-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(4px);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .footer-contact-item svg {
+            color: var(--accent-color);
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .footer-back a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .footer-back a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* ═══ SCROLL ANIMATIONS ═══ */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-delay-1 { transition-delay: 0.1s; }
+        .animate-delay-2 { transition-delay: 0.2s; }
+        .animate-delay-3 { transition-delay: 0.3s; }
+        .animate-delay-4 { transition-delay: 0.4s; }
+
+        /* Hero specific entrance */
+        .hero-content > * {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: hero-entrance 0.8s ease forwards;
+        }
+
+        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+        .hero-content > *:nth-child(5) { animation-delay: 0.7s; }
+
+        @keyframes hero-entrance {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .why-image {
+                order: -1;
+            }
+            .why-image img {
+                height: 350px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-burger { display: flex; }
+
+            .hero { padding: 140px 0 80px; }
+            .hero-title { letter-spacing: -1px; }
+            .hero-actions { flex-direction: column; }
+            .hero-actions .btn { width: 100%; }
+            .hero-stats { 
+                flex-direction: column; 
+                gap: 24px; 
+            }
+
+            .section { padding: 80px 0; }
+
+            .services-grid { grid-template-columns: 1fr; }
+
+            .form-row { grid-template-columns: 1fr; gap: 16px; }
+            .calculator-wrapper { padding: 32px 20px; }
+
+            .cta-inner { padding: 48px 24px; }
+            .cta-actions { flex-direction: column; }
+            .cta-actions .btn { width: 100%; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+            .stat-number { font-size: 32px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 36px; }
+            .section-title { font-size: 28px; }
+            .modal { margin: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+                Apex <span>Auto</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#uslugi">Usługi</a></li>
+                <li><a href="#dlaczego-my">Dlaczego my</a></li>
+                <li><a href="#kalkulator">Wycena</a></li>
+                <li><a href="index.html" style="color: var(--accent-color);">Wróć do Portfolio</a></li>
+                <li class="nav-cta-wrap">
+                    <a href="#kalkulator" class="btn btn-primary btn-sm nav-cta">Wyceń naprawę</a>
+                </li>
+            </ul>
+
+            <button class="nav-burger" id="navBurger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu__links">
+            <li><a href="#uslugi" class="mobile-link">Usługi</a></li>
+            <li><a href="#dlaczego-my" class="mobile-link">Dlaczego my</a></li>
+            <li><a href="#kalkulator" class="mobile-link">Wycena</a></li>
+            <li><a href="index.html" class="nav-back">← Wróć do Portfolio</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-noise"></div>
+        <div class="hero-glow hero-glow--1"></div>
+        <div class="hero-glow hero-glow--2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Błyskawiczna diagnoza i wycena online
+                </div>
+                <h1 class="hero-title">Profesjonalny <span>Serwis</span> Twojego Samochodu</h1>
+                <p class="hero-desc">Zapewniamy najwyższą jakość usług mechanicznych, diagnostykę komputerową oraz pełen serwis klimatyzacji. Zaufaj specjalistom z wieloletnim doświadczeniem.</p>
+                <div class="hero-actions">
+                    <a href="#kalkulator" class="btn btn-primary">
+                        Szybka Wycena
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="tel:+48000000000" class="btn btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Zadzwoń teraz
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number"><span class="counter" data-target="15">0</span><span class="accent">+</span></div>
+                        <div class="hero-stat-label">Lat doświadczenia</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number"><span class="counter" data-target="5000">0</span><span class="accent">+</span></div>
+                        <div class="hero-stat-label">Obsłużonych pojazdów</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number"><span class="counter" data-target="98">0</span><span class="accent">%</span></div>
+                        <div class="hero-stat-label">Zadowolonych klientów</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section services" id="uslugi">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Specjalizacje</div>
+                <h2 class="section-title">Nasze <span>Specjalizacje</span></h2>
+                <p class="section-desc">Oferujemy kompleksowy zakres usług dla Twojego pojazdu, wykorzystując nowoczesny sprzęt i lata doświadczenia.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll animate-delay-1">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h3 class="service-card-title">Diagnostyka komputerowa</h3>
+                    <p class="service-card-desc">Szybkie i precyzyjne wykrywanie usterek za pomocą najnowszego oprogramowania diagnostycznego.</p>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-2">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <h3 class="service-card-title">Mechanika pojazdowa</h3>
+                    <p class="service-card-desc">Od wymiany oleju po skomplikowane naprawy silników i skrzyń biegów. Pełen profesjonalizm.</p>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-3">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16.5a4 4 0 1 1 8 0" /><path d="M12 8V2" /><path d="M4.93 10.93l1.41 1.41" /><path d="M2 16.5h2" /><path d="M20 16.5h2" /><path d="M17.66 12.34l1.41-1.41" /><path d="M12 16.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" /></svg>
+                    </div>
+                    <h3 class="service-card-title">Serwis klimatyzacji</h3>
+                    <p class="service-card-desc">Odgrzybianie, nabijanie czynnika, sprawdzanie szczelności i naprawa kompresorów klimatyzacji.</p>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-4">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    </div>
+                    <h3 class="service-card-title">Układy hamulcowe</h3>
+                    <p class="service-card-desc">Wymiana tarcz, klocków, płynu hamulcowego oraz regeneracja zacisków. Bezpieczeństwo to podstawa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll animate-delay-1">
+                    <div class="stat-number"><span class="counter" data-target="15">0</span>+</div>
+                    <div class="stat-label">Lat na rynku</div>
+                </div>
+                <div class="stat-item animate-on-scroll animate-delay-2">
+                    <div class="stat-number"><span class="counter" data-target="5000">0</span>+</div>
+                    <div class="stat-label">Napraw wykonanych</div>
+                </div>
+                <div class="stat-item animate-on-scroll animate-delay-3">
+                    <div class="stat-number"><span class="counter" data-target="12">0</span></div>
+                    <div class="stat-label">Specjalistów w zespole</div>
+                </div>
+                <div class="stat-item animate-on-scroll animate-delay-4">
+                    <div class="stat-number"><span class="counter" data-target="98">0</span>%</div>
+                    <div class="stat-label">Zadowolonych klientów</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Us -->
+    <section class="section why-us" id="dlaczego-my">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?q=80&w=1200&auto=format&fit=crop" alt="Profesjonalny mechanik przy pracy w warsztacie Apex Auto Service" loading="lazy">
+                    <div class="why-image-badge">
+                        <div class="why-image-badge-number">15+</div>
+                        <div class="why-image-badge-text">lat doświadczenia</div>
+                    </div>
+                </div>
+                <div class="why-content animate-on-scroll animate-delay-2">
+                    <div class="section-tag">Dlaczego my</div>
+                    <h2 class="section-title">Warsztat, któremu <span>zaufasz</span></h2>
+                    <p class="section-desc">Stawiamy na jakość, transparentność i szybkość realizacji. Każdy pojazd traktujemy indywidualnie.</p>
+                    <div class="why-features">
+                        <div class="why-feature">
+                            <div class="why-feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </div>
+                            <div class="why-feature-text">
+                                <h4>Gwarancja na usługi</h4>
+                                <p>Każda wykonana naprawa objęta jest pełną gwarancją. Twój spokój to nasz priorytet.</p>
+                            </div>
+                        </div>
+                        <div class="why-feature">
+                            <div class="why-feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div class="why-feature-text">
+                                <h4>Ekspresowe terminy</h4>
+                                <p>Realizujemy zlecenia w najkrótszym możliwym czasie, bez kompromisów w jakości.</p>
+                            </div>
+                        </div>
+                        <div class="why-feature">
+                            <div class="why-feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                            <div class="why-feature-text">
+                                <h4>Uczciwe ceny</h4>
+                                <p>Transparentna wycena przed rozpoczęciem prac. Żadnych ukrytych kosztów ani niespodzianek.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="section calculator-section" id="kalkulator">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Wycena Online</div>
+                <h2 class="section-title">Kalkulator <span>Szybkiej Wyceny</span></h2>
+                <p class="section-desc">Wybierz markę auta oraz rodzaj problemu, aby poznać orientacyjny koszt naprawy w naszym serwisie.</p>
+            </div>
+            
+            <div class="calculator-wrapper animate-on-scroll animate-delay-1">
+                <div class="calculator-content">
+                    <div class="calc-header">
+                        <div class="calc-header-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
+                        </div>
+                        <div class="calc-header-text">
+                            <h3>Szybki kalkulator kosztów</h3>
+                            <p>Wybierz parametry, a my oszacujemy koszt naprawy</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="brandSelect">Marka samochodu</label>
+                            <select id="brandSelect" class="form-select">
+                                <option value="0" disabled selected>Wybierz markę...</option>
+                                <option value="1">Audi / BMW / Mercedes</option>
+                                <option value="0.9">Toyota / Honda / Mazda</option>
+                                <option value="0.8">Volkswagen / Skoda / Seat</option>
+                                <option value="0.85">Ford / Opel</option>
+                                <option value="0.95">Volvo / Lexus</option>
+                                <option value="1.1">Inne (Premium/Sportowe)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="problemSelect">Rodzaj usługi</label>
+                            <select id="problemSelect" class="form-select">
+                                <option value="0" disabled selected>Wybierz usługę...</option>
+                                <option value="250-450">Wymiana klocków hamulcowych (przód)</option>
+                                <option value="350-600">Przegląd okresowy (olej + filtry)</option>
+                                <option value="400-800">Naprawa zawieszenia (wahacze/łączniki)</option>
+                                <option value="150-250">Serwis klimatyzacji (nabicie + odgrzybianie)</option>
+                                <option value="100-200">Diagnostyka komputerowa</option>
+                                <option value="800-1500">Wymiana rozrządu</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-result" id="calcResult" style="display: none;">
+                        <div class="calc-price" id="calcPriceDisplay">Szacowany koszt: 0 zł</div>
+                        <p class="calc-note">Powyższa cena jest orientacyjna i nie stanowi oferty handlowej. Dokładna wycena po oględzinach pojazdu.</p>
+                        <button class="btn btn-primary" id="submitQuoteBtn" style="width: 100%;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Zatwierdź ten koszt i umów termin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-inner animate-on-scroll">
+                <h2>Masz pytanie? <span>Zadzwoń do nas</span></h2>
+                <p>Nasi specjaliści chętnie doradzą Ci najlepsze rozwiązanie dla Twojego pojazdu. Konsultacja jest bezpłatna.</p>
+                <div class="cta-actions">
+                    <a href="tel:+48000000000" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Zadzwoń: +48 000 000 000
+                    </a>
+                    <a href="#kalkulator" class="btn btn-secondary">
+                        Wyceń naprawę online
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                        </svg>
+                        Apex <span>Auto</span>
+                    </a>
+                    <p class="footer-brand-desc">Profesjonalny serwis samochodowy z wieloletnim doświadczeniem. Zapewniamy kompleksową obsługę Twojego pojazdu na najwyższym poziomie.</p>
+                </div>
+                <div>
+                    <div class="footer-col-title">Nawigacja</div>
+                    <div class="footer-links">
+                        <a href="#uslugi">→ Nasze usługi</a>
+                        <a href="#dlaczego-my">→ Dlaczego my</a>
+                        <a href="#kalkulator">→ Kalkulator wyceny</a>
+                        <a href="index.html">→ Wróć do Portfolio</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-col-title">Kontakt</div>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        +48 000 000 000
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        kontakt@apexauto.pl
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        ul. Przykładowa 42, Warszawa
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Pon-Pt: 8:00 – 18:00
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Apex Auto Service. Projekt koncepcyjny.</p>
+                <div class="footer-back">
+                    <a href="index.html">← Portfolio Jakuba</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="thankYouModal">
+        <div class="modal">
+            <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?q=80&w=800&auto=format&fit=crop" alt="Profesjonalny serwis samochodowy" class="modal-image">
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <h3 class="modal-title">Dziękujemy!</h3>
+                <p class="modal-desc">Twoje zapytanie zostało przyjęte. Skontaktujemy się z Tobą w ciągu <strong style="color: var(--accent-color);">30 minut</strong>, aby potwierdzić termin wizyty i ostateczny koszt naprawy.</p>
+                <button class="btn btn-primary" id="closeModalBtn" style="width: 100%;">
+                    Zamknij okno
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === NAVIGATION ===
+            const header = document.getElementById('mainHeader');
+            const burger = document.getElementById('navBurger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            // Scroll header
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Mobile menu
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    burger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Smooth scroll for all anchors
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // === SCROLL ANIMATIONS ===
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // === COUNTER ANIMATION ===
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.dataset.target);
+                        const duration = 2000;
+                        const startTime = performance.now();
+
+                        function updateCounter(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            // Ease out cubic
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const current = Math.round(eased * target);
+                            counter.textContent = current.toLocaleString('pl-PL');
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            }
+                        }
+                        requestAnimationFrame(updateCounter);
+                        counterObserver.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.counter').forEach(el => {
+                counterObserver.observe(el);
+            });
+
+            // === CALCULATOR ===
+            const brandSelect = document.getElementById('brandSelect');
+            const problemSelect = document.getElementById('problemSelect');
+            const calcResult = document.getElementById('calcResult');
+            const calcPriceDisplay = document.getElementById('calcPriceDisplay');
+            const submitQuoteBtn = document.getElementById('submitQuoteBtn');
+            const thankYouModal = document.getElementById('thankYouModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            function calculateQuote() {
+                const brandMultiplier = parseFloat(brandSelect.value);
+                const priceRange = problemSelect.value;
+
+                if (brandMultiplier > 0 && priceRange !== "0") {
+                    const [min, max] = priceRange.split('-').map(Number);
+                    const finalMin = Math.round(min * brandMultiplier);
+                    const finalMax = Math.round(max * brandMultiplier);
+                    
+                    calcPriceDisplay.textContent = `Szacowany koszt: ${finalMin} – ${finalMax} zł`;
+                    calcResult.style.display = 'block';
+                } else {
+                    calcResult.style.display = 'none';
+                }
+            }
+
+            brandSelect.addEventListener('change', calculateQuote);
+            problemSelect.addEventListener('change', calculateQuote);
+
+            submitQuoteBtn.addEventListener('click', () => {
+                thankYouModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            function closeModal() {
+                thankYouModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+
+            thankYouModal.addEventListener('click', (e) => {
+                if (e.target === thankYouModal) closeModal();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && thankYouModal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // === IFRAME PERFORMANCE MODE ===
+            // When loaded in an iframe (preview modal), disable expensive effects
+            if (window !== window.top) {
+                const style = document.createElement('style');
+                style.textContent = `
+                    header {
+                        backdrop-filter: none !important;
+                        -webkit-backdrop-filter: none !important;
+                        background: rgba(10, 10, 12, 0.98) !important;
+                    }
+                    .hero-glow {
+                        display: none !important;
+                    }
+                    .hero-noise {
+                        display: none !important;
+                    }
+                    .modal-overlay {
+                        backdrop-filter: none !important;
+                        -webkit-backdrop-filter: none !important;
+                    }
+                    .mobile-menu {
+                        backdrop-filter: none !important;
+                        -webkit-backdrop-filter: none !important;
+                    }
+                    .why-image-badge {
+                        backdrop-filter: none !important;
+                        -webkit-backdrop-filter: none !important;
+                    }
+                    .service-card::after {
+                        display: none !important;
+                    }
+                    .calculator-wrapper::after {
+                        display: none !important;
+                    }
+                    * {
+                        scroll-behavior: auto !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+    </script>
+</body>
+</html>
