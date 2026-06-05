@@ -2349,3 +2349,19 @@ body.modal-active .nav {
         max-height: calc(70vh - 70px);
     }
 }
+
+/* Optymalizacje wydajności na urządzeniach mobilnych */
+@media (max-width: 1024px) {
+    .service-card, .project-card {
+        background: var(--bg-card) !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav--scrolled, .mobile-menu {
+        background: rgba(10, 10, 15, 0.98) !important;
+        backdrop-filter: none !important;
+    }
+}
