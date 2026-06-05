@@ -180,7 +180,7 @@ if (contactForm) {
         const btn = document.getElementById('submitBtn');
         const originalContent = btn.innerHTML;
 
-        // Simulate form submission
+        // Pokaż animację wysyłania (spinner)
         btn.innerHTML = `
             <span>Wysyłanie...</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin">
@@ -189,7 +189,37 @@ if (contactForm) {
         `;
         btn.disabled = true;
 
-        setTimeout(() => {
+        // Przygotuj dane do wysyłki
+        const formData = new FormData(contactForm);
+        const payload = {
+            _subject: "Nowa wiadomość ze strony sarnowski.dev!",
+            _captcha: "false"
+        };
+        formData.forEach((value, key) => {
+            if (key === 'rodo') {
+                payload['Zgoda RODO'] = value === 'on' ? 'Zaakceptowano' : 'Niezaakceptowano';
+            } else {
+                payload[key] = value;
+            }
+        });
+
+        // Wyślij dane za pomocą AJAX do FormSubmit
+        fetch('https://formsubmit.co/ajax/kontakt@sarnowskidev.pl', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Błąd serwera przy wysyłaniu formularza');
+        })
+        .then(data => {
+            // Sukces - zmień przycisk na zielony i "Wysłano!"
             btn.innerHTML = `
                 <span>Wysłano!</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -204,7 +234,25 @@ if (contactForm) {
                 btn.style.background = '';
                 contactForm.reset();
             }, 2500);
-        }, 1500);
+        })
+        .catch(error => {
+            console.error('Błąd podczas wysyłania wiadomości:', error);
+            // Błąd - zmień przycisk na czerwony i "Błąd wysyłania"
+            btn.innerHTML = `
+                <span>Błąd wysyłania</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            `;
+            btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                btn.style.background = '';
+            }, 3000);
+        });
     });
 }
 

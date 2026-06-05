@@ -56,6 +56,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    overflow-x: hidden;
 }
 
 body {
@@ -64,8 +65,12 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: default;
 }
 
 a {
@@ -91,7 +96,13 @@ button {
 }
 
 input,
-textarea,
+textarea {
+    font-family: inherit;
+    user-select: text;
+    -webkit-user-select: text;
+    cursor: text;
+}
+
 select {
     font-family: inherit;
 }
@@ -1250,6 +1261,9 @@ select {
     letter-spacing: -0.03em;
     margin-top: 16px;
     margin-bottom: 16px;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .contact__desc {
@@ -1257,6 +1271,9 @@ select {
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 32px;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .contact__methods {
@@ -1274,6 +1291,9 @@ select {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     transition: all 0.3s var(--ease-out);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .contact__method:hover {
@@ -1329,6 +1349,9 @@ select {
     font-weight: 600;
     color: var(--text-secondary);
     margin-bottom: 8px;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .form__input {
@@ -1412,6 +1435,8 @@ select {
     color: var(--text-secondary);
     line-height: 1.5;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* ============================================
@@ -1773,7 +1798,7 @@ body.modal-active .nav {
     justify-content: center;
     align-items: stretch;
     overflow: hidden;
-    padding: 24px;
+    padding: 16px;
 }
 
 .project-modal__phone-container {
@@ -1835,14 +1860,16 @@ body.modal-active .nav {
 }
 
 .project-modal__iframe {
-    width: 100%;
-    height: 100%;
+    /* Scale trick: iframe renders at 138.9% size then scaled to 72%
+       so the "virtual viewport" is ~39% larger than the container,
+       making the Spectrum hero section (100vh) fit fully in the modal */
+    width: 138.9%;
+    height: 138.9%;
+    transform: scale(0.72);
+    transform-origin: top left;
     border: none;
     background: white;
     display: block;
-    will-change: auto;
-    contain: strict;
-    isolation: isolate;
 }
 
 .project-modal__frame-wrapper.mobile-view {
@@ -1857,6 +1884,14 @@ body.modal-active .nav {
     border: 12px solid #1a1a1a;
     border-radius: 40px;
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+/* Reset iframe scale for mobile view - phone frame has fixed dimensions */
+.project-modal__frame-wrapper.mobile-view .project-modal__iframe {
+    width: 100%;
+    height: 100%;
+    transform: none;
 }
 
 .project-modal__frame-wrapper.mobile-view .project-modal__phone-notch {
