@@ -2108,12 +2108,24 @@ body.modal-active .nav {
     flex-shrink: 0;
 }
 
-.chatbot__header-img {
+.chatbot__header-img,
+.chatbot__header-icon {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    object-fit: cover;
     border: 2px solid var(--accent-start);
+}
+
+.chatbot__header-img {
+    object-fit: cover;
+}
+
+.chatbot__header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--accent-start);
 }
 
 .chatbot__header-status {
