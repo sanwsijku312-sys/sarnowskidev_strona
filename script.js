@@ -318,6 +318,8 @@ document.querySelectorAll('.service-card, .project-card').forEach(card => {
     let rafId = null;
 
     card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 1024 || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches)) return;
+
         if (rafId) return; // Skip if a frame is already scheduled
 
         rafId = requestAnimationFrame(() => {
