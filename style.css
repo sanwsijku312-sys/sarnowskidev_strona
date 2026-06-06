@@ -2378,4 +2378,18 @@ body.modal-active .nav {
         width: 100% !important;
         box-sizing: border-box !important;
     }
+    
+    .hero__visual {
+        max-width: 100% !important;
+        overflow: hidden;
+    }
+
+    .hero__code-window {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .code-window__body {
+        padding: 16px;
+    }
 }

@@ -13,9 +13,12 @@
     <link rel="icon" type="image/svg+xml" href="brand-logo.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+    </noscript>
     <link rel="preload" fetchpriority="high" as="image" href="photo_of_me.webp" type="image/webp">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -306,7 +309,7 @@
                         class="project-card" data-animate="fade-up" data-delay="0"
                         style="text-decoration: none; color: inherit; display: block;">
                         <img src="strona-spectrum-sc.webp" alt="Spectrum Ubezpieczenia — strona agencji"
-                            class="project-card__img">
+                            class="project-card__img" loading="lazy" decoding="async">
                         <div class="project-card__badge">Wdrożenie Komercyjne</div>
                         <h3 class="project-card__title">Strona Agencji Ubezpieczeniowej</h3>
                         <p class="project-card__desc">Profesjonalna platforma wizerunkowo-ofertowa zrealizowana dla
