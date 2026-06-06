@@ -1038,7 +1038,9 @@ select {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: 0.02em;
-    min-height: 1.4em;
+    min-height: 24px;
+    min-width: 140px;
+    display: inline-block;
     opacity: 0;
     transform: translateY(4px);
     transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
