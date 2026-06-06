@@ -2357,11 +2357,25 @@ body.modal-active .nav {
         transform: none !important;
         transition: none !important;
     }
+
+    [data-animate], [data-animate="fade-left"] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
 }
 
 @media (max-width: 768px) {
     .nav--scrolled, .mobile-menu {
         background: rgba(10, 10, 15, 0.98) !important;
         backdrop-filter: none !important;
+    }
+
+    .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 }
