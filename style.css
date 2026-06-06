@@ -954,6 +954,19 @@ select {
     color: var(--text-secondary);
 }
 
+.project-tag-cta {
+    color: var(--accent-end) !important;
+    border-color: rgba(99, 102, 241, 0.3) !important;
+    background: rgba(99, 102, 241, 0.1) !important;
+}
+
+.project-card:hover .project-tag-cta {
+    background: linear-gradient(135deg, var(--accent-start), var(--accent-mid)) !important;
+    color: white !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
 /* ============================================
    ABOUT
    ============================================ */
@@ -1610,6 +1623,13 @@ select {
 }
 
 @media (max-width: 768px) {
+    .bg-glow, .bg-grid, .hero-noise {
+        display: none !important;
+    }
+    body {
+        background-color: #0a0a0c !important; /* Czyste, głębokie, jednolite tło */
+    }
+
     .nav__links {
         display: none;
     }
@@ -2390,34 +2410,127 @@ body.modal-active .nav {
         transition: none !important;
         animation: none !important;
     }
+
+    .terminal__line {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .project-tag-cta {
+        background: linear-gradient(135deg, var(--accent-start), var(--accent-mid)) !important;
+        color: white !important;
+        border-color: transparent !important;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+    }
 }
 
 @media (max-width: 768px) {
-
-    .nav--scrolled,
-    .mobile-menu {
-        background: rgba(10, 10, 15, 0.98) !important;
-        backdrop-filter: none !important;
+    /* 1. CAŁKOWITY RESET POZYCJONOWANIA HERO NA MOBILE */
+    .hero,
+    .hero__content,
+    .hero__visual,
+    .hero__stats {
+        position: static !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        height: auto !important;
+        min-height: initial !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        transform: none !important;
     }
 
-    .container {
+    /* 2. WDROŻENIE NATURALNEGO FLOW (FLEXBOX) */
+    .hero {
+        padding-top: 100px !important; /* Bezpieczny odstęp pod fixed navbar */
+        padding-bottom: 40px !important;
+        height: auto !important;
+        min-height: initial !important;
+        display: block !important;
+        position: relative !important; /* Dla ewentualnych pozycjonowanych teł w sekcji */
+    }
+
+    .hero .container {
+        display: block !important;
+        width: 100% !important;
         padding-left: 20px !important;
         padding-right: 20px !important;
-        width: 100% !important;
         box-sizing: border-box !important;
     }
 
-    .hero__visual {
+    .hero__content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
         max-width: 100% !important;
+    }
+
+    .hero__profile {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 14px !important;
+    }
+
+    /* Upewnij się, że wizualne okno kodu (hero__visual) ląduje grzecznie na samym dole, pod statystykami */
+    .hero__visual {
+        margin-top: 40px !important;
+        width: 100% !important;
+        display: block !important;
+        position: static !important;
         overflow: hidden;
     }
 
     .hero__code-window {
-        max-width: 100%;
-        box-sizing: border-box;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .code-window__body {
-        padding: 16px;
+        padding: 16px !important;
+    }
+
+    .hero__stats {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        margin-top: 32px !important;
+        width: 100% !important;
+    }
+
+    /* 3. USUNIĘCIE UKRYWANIA ELEMENTÓW */
+    .hero__profile-img,
+    .hero__title,
+    .hero__profile-name {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+
+    .hero__profile-img,
+    .hero__title {
+        display: block !important;
+    }
+
+    /* Czyszczenie tła i efektów graficznych na mobile */
+    .bg-glow,
+    .bg-grid,
+    .hero-noise {
+        display: none !important;
+    }
+    
+    body {
+        background-color: #0a0a0c !important; /* Czyste, głębokie, jednolite tło */
+    }
+
+    /* Pozostałe konieczne style responsywne */
+    .nav--scrolled,
+    .mobile-menu {
+        background: rgba(10, 10, 15, 0.98) !important;
+        backdrop-filter: none !important;
     }
 }

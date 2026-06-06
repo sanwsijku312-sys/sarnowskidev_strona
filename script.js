@@ -103,6 +103,7 @@ if (statsSection) {
 // TERMINAL ANIMATION
 // ============================================
 function animateTerminal() {
+    if (window.innerWidth < 1024) return;
     const lines = document.querySelectorAll('.terminal__line');
     let delay = 0;
 
@@ -262,54 +263,68 @@ if (contactForm) {
 const heroProfile = document.querySelector('.hero__profile');
 const profileTyping = document.getElementById('profileTyping');
 
-if (heroProfile && profileTyping) {
-    const fullName = 'Jakub Sarnowski';
-    let typingInterval = null;
-    let clearTimeout_id = null;
-
-    heroProfile.addEventListener('mouseenter', () => {
-        // Cancel any pending clear from previous mouseleave
-        if (clearTimeout_id) {
-            clearTimeout(clearTimeout_id);
-            clearTimeout_id = null;
+function initProfileTyping() {
+    if (window.innerWidth < 1024) {
+        if (profileTyping) {
+            profileTyping.textContent = 'Jakub Sarnowski';
+            profileTyping.classList.add('visible', 'done');
         }
-        // Cancel any ongoing typing
-        if (typingInterval) {
-            clearInterval(typingInterval);
-            typingInterval = null;
-        }
+        return;
+    }
 
-        // Reset and start fresh
-        profileTyping.textContent = '';
-        profileTyping.classList.remove('done');
-        profileTyping.classList.add('visible');
+    if (heroProfile && profileTyping) {
+        const fullName = 'Jakub Sarnowski';
+        let typingInterval = null;
+        let clearTimeout_id = null;
 
-        let i = 0;
-        typingInterval = setInterval(() => {
-            if (i < fullName.length) {
-                profileTyping.textContent += fullName[i];
-                i++;
-            } else {
+        heroProfile.addEventListener('mouseenter', () => {
+            if (window.innerWidth < 1024) return;
+            // Cancel any pending clear from previous mouseleave
+            if (clearTimeout_id) {
+                clearTimeout(clearTimeout_id);
+                clearTimeout_id = null;
+            }
+            // Cancel any ongoing typing
+            if (typingInterval) {
                 clearInterval(typingInterval);
                 typingInterval = null;
-                profileTyping.classList.add('done');
             }
-        }, 50);
-    });
 
-    heroProfile.addEventListener('mouseleave', () => {
-        if (typingInterval) {
-            clearInterval(typingInterval);
-            typingInterval = null;
-        }
-        profileTyping.classList.remove('visible', 'done');
-
-        clearTimeout_id = setTimeout(() => {
+            // Reset and start fresh
             profileTyping.textContent = '';
-            clearTimeout_id = null;
-        }, 300);
-    });
+            profileTyping.classList.remove('done');
+            profileTyping.classList.add('visible');
+
+            let i = 0;
+            typingInterval = setInterval(() => {
+                if (i < fullName.length) {
+                    profileTyping.textContent += fullName[i];
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    typingInterval = null;
+                    profileTyping.classList.add('done');
+                }
+            }, 50);
+        });
+
+        heroProfile.addEventListener('mouseleave', () => {
+            if (window.innerWidth < 1024) return;
+            if (typingInterval) {
+                clearInterval(typingInterval);
+                typingInterval = null;
+            }
+            profileTyping.classList.remove('visible', 'done');
+
+            clearTimeout_id = setTimeout(() => {
+                profileTyping.textContent = '';
+                clearTimeout_id = null;
+            }, 300);
+        });
+    }
 }
+
+initProfileTyping();
 
 // ============================================
 // CURSOR GLOW EFFECT ON CARDS
