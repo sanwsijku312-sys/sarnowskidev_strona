@@ -193,7 +193,7 @@ if (contactForm) {
         // Przygotuj dane do wysyłki
         const formData = new FormData(contactForm);
         const payload = {
-            _subject: "Nowa wiadomość ze strony sarnowski.dev!",
+            _subject: "Nowa wiadomość ze strony sarnowskidev.pl!",
             _captcha: "false"
         };
         formData.forEach((value, key) => {
